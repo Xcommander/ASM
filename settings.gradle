@@ -1,0 +1,3 @@
+rootProject.name = "ASM"
+include ':app'
+include ':logger-plugin'
