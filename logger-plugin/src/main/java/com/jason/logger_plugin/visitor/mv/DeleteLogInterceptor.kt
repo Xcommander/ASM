@@ -35,12 +35,12 @@ class DeleteLogInterceptor(
          * 1、因为是调用的方法是static方法，所以opcodeAndSource="static"
          * 2、调用的类为Log类，所以owner="android/util/Log"
          * 3、调用的方法名："v"，"d"，"e"，"w"，"i"
-         * 4、方法的描述，例如(String tag,String message)：(Ljava/lang/String;Ljava/lang/String)I
+         * 4、方法的描述，例如(String tag,String message)：(Ljava/lang/String;Ljava/lang/String;)I
          * 5、是否是接口，就不是我们关心的
          */
         if (Opcodes.ACC_STATIC.and(opcodeAndSource) != 0 && owner == "android/util/Log" && (
                     name == "v" || name == "d" || name == "i" || name == "e" || name == "w"
-                    ) && descriptor == "(Ljava/lang/String;Ljava/lang/String)I"
+                    ) && descriptor == "(Ljava/lang/String;Ljava/lang/String;)I"
         ) {//条件均符合
             //直接return，这样就相当于删除了这样操作码，就不会被保存到methodVisitor中，无法被输出
             return

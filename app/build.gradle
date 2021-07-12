@@ -36,7 +36,7 @@ LogFlags {
     debug = true
     tryCatch = true
     printLog = true
-    deleteLog = false
+    deleteLog = true
 }
 dependencies {
 
