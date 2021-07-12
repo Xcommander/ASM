@@ -5,9 +5,10 @@ import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.jason.logger_plugin.utils.LogUtil
+import com.jason.logger_plugin.utils.TransformHelper
 
 
-class LoggerExtTransform : Transform() {
+class LoggerExtTransform(private val logFlags: LogFlags) : Transform() {
     override fun getName(): String {
         //自定义transform名字，也就是编译时候，task的名字
         return PluginConstant.PLUGIN_NAME
@@ -32,21 +33,30 @@ class LoggerExtTransform : Transform() {
         super.transform(transformInvocation)
         beforeTransform()
         transformInvocation?.run {
-            //删除输出
+            //清理输出
             outputProvider.deleteAll()
-            //
+            //循环处理输入
+            for (input in inputs) {
+                //输入分为两种，一种是jar输入
+                for (jarInput in input.jarInputs) {
+                    TransformHelper.transformJars(jarInput, outputProvider, isIncremental)
+                }
 
+                //一种是目录输入
+                for (directory in input.directoryInputs) {
+                    TransformHelper.transformDirectory(directory, outputProvider, isIncremental)
+
+                }
+            }
         }
 
         afterTransform()
     }
 
 
-
-
-
     private fun beforeTransform() {
         LogUtil.info("start")
+        TransformHelper.logFlags = logFlags
     }
 
     private fun afterTransform() {}

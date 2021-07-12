@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.jason.logger.plugin'
 }
 
 android {
@@ -31,7 +32,12 @@ android {
         jvmTarget = '1.8'
     }
 }
-
+LogFlags {
+    debug = true
+    tryCatch = true
+    printLog = true
+    deleteLog = false
+}
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

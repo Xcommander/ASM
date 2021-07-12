@@ -5,7 +5,7 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.commons.AdviceAdapter
 
-//拦截到信息，给通知处理
+//如果要修改方法的字节码，必须是一个MethodVisitor，这样才能访问方法的字节码。其次是一个AOP中的切入点和通知
 class DeleteLogInterceptor(
     methodVisitor: MethodVisitor?,
     access: Int,
@@ -15,6 +15,7 @@ class DeleteLogInterceptor(
     //我们需求是删除方法中的Log的调用，也就是我们访问的是字节码中的方法。所以是visitMethodInsn()
 
     /**
+     * 访问方法中的字节码，然后修改。
      * @param opcodeAndSource:操作码修饰符
      * @param owner:操作码的类名
      * @param name:操作码的方法名

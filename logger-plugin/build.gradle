@@ -34,9 +34,9 @@ uploadArchives{
     repositories {
         mavenDeployer{
             //设置插件的GAV参数
-            pom.groupId="com.jason.logger.plugin"//包名
-            pom.artifactId="ASMPlugin"//插件名
-            pom.version="1.0"//版本号
+            pom.groupId='com.jason.logger.plugin'//包名
+            pom.artifactId='ASMPlugin'//插件名
+            pom.version='1.0'//版本号
             repository(url:uri('../repo'))//文件发布到目标目录下，../表示父目录
         }
     }

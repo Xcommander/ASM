@@ -9,4 +9,5 @@ object PluginConstant {
 
     //插件的名字
     const val PLUGIN_NAME="ASMPlugin"
+
 }
