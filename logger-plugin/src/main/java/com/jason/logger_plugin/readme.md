@@ -1,4 +1,3 @@
-[toc]
 
 # 一、删除日志
 
@@ -33,5 +32,8 @@ input输入class字节码流 -> CLassVisitor进行visit()对字节码进行访�
 -> 这时候MethodVisitor就会访问方法，对于操作码来说执行visitMethodInsn(),在visitMethodInsn进行拦截和处理字节码。
 
 所以这个就是我们为什么需要自定义MethodVisitor和CLassVisitor。
+
+
+插件作用范围是编译期，不会打包到apk中。所以打印日志都是在编译期，不会出现在运行期。
 
                           

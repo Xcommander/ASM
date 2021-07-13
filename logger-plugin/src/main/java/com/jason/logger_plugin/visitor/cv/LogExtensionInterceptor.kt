@@ -2,7 +2,9 @@ package com.jason.logger_plugin.visitor.cv
 
 import com.jason.logger_plugin.LogFlags
 import com.jason.logger_plugin.utils.LogUtil
+import com.jason.logger_plugin.visitor.Config
 import com.jason.logger_plugin.visitor.mv.DeleteLogInterceptor
+import com.jason.logger_plugin.visitor.mv.TraceStartInterceptor
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 
@@ -23,6 +25,9 @@ class LogExtensionInterceptor(api: Int, classVisitor: ClassVisitor?, private val
             if (deleteLog) {
                 LogUtil.error("DeleteLogInterceptor")
                 methodVisitor = DeleteLogInterceptor(methodVisitor, access, name, descriptor)
+            }
+            if (methodTrace && Config.isTraceMethod(access, name, descriptor, signature)) {//统计耗时
+                methodVisitor = TraceStartInterceptor(methodVisitor, access, name, descriptor)
             }
         }
         return methodVisitor
