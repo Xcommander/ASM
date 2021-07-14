@@ -35,8 +35,8 @@ android {
 LogFlags {
     debug = true
     tryCatch = true
-    printLog = true
-    deleteLog = true
+    printLog = false
+    deleteLog = false
     methodTrace=false
 }
 dependencies {

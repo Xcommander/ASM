@@ -7,9 +7,9 @@ import org.objectweb.asm.ClassVisitor
 open class BaseClassInterceptor(api: Int, classVisitor: ClassVisitor?) :
     ClassVisitor(api, classVisitor) {
 
-    private var className: String? = ""
-    private var signature: String? = ""
-    private var superName: String? = ""
+    var className: String? = ""
+    var signature: String? = ""
+    var superName: String? = ""
     override fun visit(
         version: Int,
         access: Int,

@@ -11,7 +11,12 @@ class MainActivity : AppCompatActivity() {
         test()
     }
 
-    fun test(){
-        Log.e("xulinchao","test1")
+    private fun test() {
+        Log.e("xulinchao", "test1")
+    }
+
+    private fun testString(): String {
+        val result = 5 / 0
+        return "Hello World"
     }
 }

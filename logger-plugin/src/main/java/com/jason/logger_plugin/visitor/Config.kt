@@ -16,4 +16,23 @@ object Config {
         return false
 
     }
+
+    fun isActivityMethod(className: String?): Boolean {
+        className?.run {
+            if (this.endsWith("Activity")) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun isTryCatchMethod(className: String?, name: String?): Boolean {
+        className?.run {
+            if (this.endsWith("Activity") && "testString" == (name)) {
+                return true
+            }
+        }
+        return false
+    }
+
 }
